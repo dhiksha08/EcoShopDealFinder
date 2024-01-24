@@ -165,7 +165,8 @@ def shopping():
     with container1:    
         for i in range(st.session_state.i1, min(st.session_state.i1+3, len(st.session_state.df1))):
             st.markdown("**"+st.session_state.df1.iloc[i]["Name"]+"**")
-            st.image(st.session_state.df1.iloc[i]["Image URL"], width = 200)
+            st.image(str(st.session_state.df1.iloc[i]["ImageURL"]), width=200)
+
             st.markdown("Price : "+str(st.session_state.df1.iloc[i]["Price"]))
             st.markdown("Average Rating : "+str(st.session_state.df1.iloc[i]["Average Rating"]))
             st.markdown("No of Ratings : "+str(st.session_state.df1.iloc[i]["No of Ratings"]))
@@ -187,7 +188,10 @@ def shopping():
     with container3:
         for i in range(st.session_state.i3, min(st.session_state.i3+3, len(st.session_state.df3))):
             st.markdown("**"+st.session_state.df3.iloc[i]["Name"]+"**")
-            st.image(st.session_state.df3.iloc[i]["ImageURL"], width = 200)
+            image_url = str(st.session_state.df3.iloc[i]["ImageURL"])
+            placeholder_url = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplaceholder&psig=AOvVaw3HbMxqu7-AVID4k9XHANG9&ust=1706186477453000&source=images&cd=vfe&ved=0CBMQjRxqFwoTCIDKpLCG9oMDFQAAAAAdAAAAABAd"
+            st.image(image_url if image_url and image_url.lower() != 'nan' else placeholder_url, width=200)
+
             st.markdown("Price : "+str(st.session_state.df3.iloc[i]["Price"]))
             st.markdown("Average Rating : "+str(st.session_state.df3.iloc[i]["Average Rating"]))
             st.button("Purchase z" + str(i+1), key=f"purchase_z_{i}", on_click=lambda i=i: webbrowser.open_new_tab(st.session_state.df3.iloc[i]["Product URL"]))

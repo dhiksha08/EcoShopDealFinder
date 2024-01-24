@@ -1,4 +1,4 @@
-import amazon
+import amazon 
 import flipkart
 import gooogle
 import threading 
